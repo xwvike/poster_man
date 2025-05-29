@@ -1,0 +1,19 @@
+{
+  "name": "poster_man",
+  "version": "1.0.0",
+  "description": "A fabric.js based poster editor for developers",
+  "main": "dist/poster-editor.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "build:lib": "vite build --mode lib"
+  },
+  "devDependencies": {
+    "vite": "^6.3.5"
+  },
+  "dependencies": {
+    "fabric": "^6.6.6"
+  }
+}

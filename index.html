@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海报编辑器基础容器</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+        }
+        #editor-container {
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            width: fit-content;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+<div id="editor-container"></div>
+<script type="module">
+  import PosterEditor from './src/index.js';
+  import editorActions from './src/editorActions.js';
+  import editorEvents from './src/editorEvents.js';
+
+  // 初始化编辑器
+  const editor = new PosterEditor('editor-container', {
+    width: 800,
+    height: 600,
+    backgroundColor: '#ffffff'
+  });
+
+  // 全局暴露API，方便外部调用
+  window.editor = editor;
+  window.editorActions = editorActions(editor);
+  window.editorEvents = editorEvents;
+
+  // 注册基础事件（可自定义扩展）
+  editorEvents.registerAll(editor);
+
+  // 你可以在外部通过 window.editorActions 调用所有操作
+  // 例如：window.editorActions.addText('Hello', { fontSize: 32 })
+  // 事件监听可通过 window.editorEvents.registerAll 进行扩展
+</script>
+</body>
+</html>
