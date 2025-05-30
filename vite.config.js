@@ -1,4 +1,5 @@
 import {defineConfig} from 'vite'
+import pkg from './package.json'
 
 export default defineConfig({
   build: {
@@ -14,6 +15,9 @@ export default defineConfig({
         globals: {}
       }
     }
+  },
+  define: {
+    'process.env.PACKAGE_VERSION': JSON.stringify(pkg.version)
   },
   server: {
     port: 3000,

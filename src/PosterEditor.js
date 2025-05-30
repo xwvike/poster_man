@@ -19,7 +19,7 @@ class PosterEditor extends EventEmitter {
 
     this.canvas = null;
     this.data = {
-      version: '1.0.0',
+      version: process.env.PACKAGE_VERSION || '1.0.0',
       canvas: {
         width: this.options.width,
         height: this.options.height,
@@ -126,7 +126,6 @@ class PosterEditor extends EventEmitter {
 
     if (data.objects && Array.isArray(data.objects)) {
       try {
-        // v6 使用 loadFromJSON 方法
         await this.canvas.loadFromJSON({ objects: data.objects });
         this.canvas.renderAll();
       } catch (error) {
@@ -142,14 +141,14 @@ class PosterEditor extends EventEmitter {
     return JSON.parse(JSON.stringify(this.data));
   }
 
-  // 添加文本 (v6使用Textbox替代Text以获得更好的编辑体验)
+  // 添加文本
   addText(text, options = {}) {
     const textObj = new Textbox(text, {
       left: 100,
       top: 100,
       fontSize: 20,
       fill: '#000000',
-      width: 200, // Textbox需要指定宽度
+      width: 200,
       ...options
     });
 
@@ -162,7 +161,6 @@ class PosterEditor extends EventEmitter {
   // 添加图片
   async addImage(url, options = {}) {
     try {
-      // v6 使用 FabricImage.fromURL，返回Promise
       const img = await FabricImage.fromURL(url, {
         crossOrigin: 'anonymous'
       });
