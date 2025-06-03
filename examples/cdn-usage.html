@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>海报编辑器基础容器</title>
+    <title>海报编辑器 - CDN使用示例</title>
     <style>
         body {
             margin: 0;
@@ -27,25 +27,27 @@
             padding: 0;
         }
     </style>
+    <!-- 先引入fabric.js -->
+    <script src="https://cdn.jsdelivr.net/npm/fabric@latest/dist/index.min.js"></script>
+    <!-- 再引入poster_man -->
+    <script src="../dist/poster-man.umd.cjs"></script>
 </head>
 <body>
 <div id="editor-container">
     <div id="paint-board"></div>
 </div>
-<script type="module">
-  import {PosterEditor, editorActions, editorEvents} from './dist/poster-man.js'
-
-  // 初始化编辑器
-  const editor = new PosterEditor('paint-board', {
+<script>
+  // 使用全局变量PosterEditor
+  const editor = new PosterEditor.PosterEditor('paint-board', {
     width: 800,
     height: 600,
     backgroundColor: '#ffffff'
   });
 
   window.editor = editor;
-  const actions = editorActions(editor);
+  const actions = PosterEditor.editorActions(editor);
 
-  editorEvents.registerAll(editor);
+  PosterEditor.editorEvents.registerAll(editor);
   actions.loadFromJSON({
     "canvas": {
       "width": 800,
@@ -65,7 +67,7 @@
         "fill": "#000000"
       }
     ]
-  })
+  });
 </script>
 </body>
 </html>

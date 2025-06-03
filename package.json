@@ -2,18 +2,46 @@
   "name": "poster_man",
   "version": "1.0.0",
   "description": "A fabric.js based poster editor for developers",
-  "main": "dist/poster-editor.js",
+  "main": "dist/poster-man.umd.cjs",
+  "module": "dist/poster-man.js",
+  "types": "dist/index.d.ts",
   "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/poster-man.js",
+      "require": "./dist/poster-man.umd.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "build:lib": "vite build --mode lib"
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "poster",
+    "editor",
+    "canvas",
+    "fabric",
+    "image"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xwvike/poster_man.git"
   },
   "devDependencies": {
     "vite": "^6.3.5"
   },
   "dependencies": {
     "fabric": "^6.6.6"
+  },
+  "peerDependencies": {
+    "fabric": "^6.0.0"
   }
 }
+

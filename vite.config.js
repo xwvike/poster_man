@@ -6,13 +6,15 @@ export default defineConfig({
     lib: {
       entry: './src/index.js',
       name: 'PosterEditor',
-      fileName: 'poster-editor',
+      fileName: 'poster-man',
       formats: ['es', 'umd']
     },
     rollupOptions: {
-      external: [],
+      external: ['fabric'],
       output: {
-        globals: {}
+        globals: {
+          fabric: 'fabric'
+        }
       }
     }
   },
